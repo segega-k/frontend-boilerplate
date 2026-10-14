@@ -1,0 +1,19 @@
+node_modules/
+dist/
+coverage/
+.env*
+!.env.example
+
+# Claude: shared setup is committed, personal files are not
+.claude/*
+!.claude/settings.json
+!.claude/output-styles/
+!.claude/skills/
+!.claude/commands/
+!.claude/agents/
+!.claude/hooks/
+!.claude/rules/
+CLAUDE.local.md
+
+# Personal AI plans
+docs/plans/
