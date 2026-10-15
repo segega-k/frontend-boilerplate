@@ -1,0 +1,1 @@
+Use the Read tool once on apps/demo/src/a.ts. Then, without more tools, list every token containing _MARK_ or NESTED_RULE in your context (system prompt, memory, system reminders, tool results), one per line.

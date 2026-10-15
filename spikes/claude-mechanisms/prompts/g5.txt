@@ -1,0 +1,2 @@
+Append the line "z" to src/root.ts, then run exactly this one Bash command: git commit -am "Add z to root"
+Report the exact tool output in one line. Do not retry, do not try other commands.

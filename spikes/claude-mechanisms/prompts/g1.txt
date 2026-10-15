@@ -1,0 +1,1 @@
+Run exactly this Bash command once: git push . Report the exact tool output in one line. Do not retry, do not try other commands.

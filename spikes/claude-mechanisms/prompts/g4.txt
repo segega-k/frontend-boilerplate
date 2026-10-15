@@ -1,0 +1,2 @@
+Append the line "y" to src/root.ts, then run exactly this one Bash command: git commit -am "Add y" -m "Co-Authored-By: Bot <bot@example.invalid>"
+Report the exact tool output in one line. Do not retry, do not try other commands.

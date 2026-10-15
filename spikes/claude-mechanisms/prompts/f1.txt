@@ -1,0 +1,1 @@
+Use the Read tool once on src/root.ts and quote its content. No other tools. If it fails, quote the exact error.

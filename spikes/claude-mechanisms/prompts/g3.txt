@@ -1,0 +1,4 @@
+Append the line "x" to src/root.ts, then run exactly this one Bash command (a commit with a two-line message; keep the newline inside the quotes):
+git commit -am "first line
+second line"
+Report the exact tool output in one line. Do not retry, do not try other commands.
