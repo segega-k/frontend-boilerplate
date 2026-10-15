@@ -74,3 +74,17 @@ Correction (user, 2026-10-15): the error contract stays fixed, not configurable 
 banned = 403 with the marker, maintenance = 503, exactly as in xRocket. It is part of the minimal backend expectations.
 The rest of the backend-agnostic rule stays (auth adapters, commerce interface + mock, initData adapter, realtime and
 game interfaces only).
+
+## Orchestrator decisions from wave 0 A (22a)
+
+- `ai:check` parses the YAML frontmatter of every rule and skill (a broken header silently drops a rule).
+- Onboarding and `ai:doctor`: run `claude` interactively once in the repo folder and accept the trust dialog (project
+  `permissions.allow` is ignored until then; trust is per exact path); install required plugins explicitly
+  (`claude plugin install …`) and approve project MCP servers.
+- Template-specific rules may live in `apps/<id>/.claude/rules/` (paths relative to the app; deleted with the app by
+  init) — this replaces the plan's "no template rule files".
+- Hook scripts must run on Node 22 (hooks use the system Node); exec form with `${CLAUDE_PROJECT_DIR}`; guard with
+  `onFailure: "block"`; `git push` removed from the ask list (the guard marker controls push).
+- Shell scripts run from Git Bash set `MSYS_NO_PATHCONV=1` where slash arguments are passed.
+- Known risk: auto-memory folders derive from the project path with Cyrillic letters replaced by `-`; two Cyrillic
+  paths of equal shape may share memory — documented in the README troubleshooting.
