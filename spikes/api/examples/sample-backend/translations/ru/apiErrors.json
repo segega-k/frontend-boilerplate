@@ -1,0 +1,25 @@
+{
+  "somethingWentWrong": "Что-то пошло не так",
+  "pleaseTryAgainLater": "Пожалуйста, попробуйте позже",
+  "noInternetConnection": "Нет подключения к интернету",
+  "support": "Поддержка",
+  "guard": {
+    "connection": {
+      "title": "Проблема с подключением",
+      "subtitle": "Нажмите кнопку ниже, чтобы повторить"
+    },
+    "server": {
+      "title": "Что-то пошло не так",
+      "subtitle": "Такое бывает, просто нажмите кнопку ниже"
+    }
+  },
+  "theServerIsNotResponding": "Сервер не отвечает",
+  "assetNotFound": "Актив не найден",
+  "transferSent": "Перевод отправлен",
+  "notEnoughFundsOnTheBalance": "Недостаточно средств на балансе",
+  "theMinimumAmountIs": "Минимальная сумма: {{minAmount}}",
+  "thisTransferHasAlreadyBeenSent": "Этот перевод уже отправлен",
+  "transferCancelled": "Перевод отменён",
+  "transferNotFound": "Перевод не найден",
+  "invalidLoginOrPassword": "Неверный логин или пароль"
+}

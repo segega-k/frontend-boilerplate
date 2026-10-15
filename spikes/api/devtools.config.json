@@ -1,0 +1,9 @@
+{
+  "locales": ["en", "ru"],
+  "specsDir": "examples/sample-backend/specs",
+  "generatedTypesDir": "examples/sample-backend/src/generated",
+  "mappingsDir": "examples/sample-backend/src/mappings",
+  "translationsDir": "examples/sample-backend/translations",
+  "schemaFile": "packages/api/src/errors/mapping.schema.json",
+  "apiImport": "@repo/api"
+}

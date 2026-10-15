@@ -1,0 +1,76 @@
+{
+  "somethingWentWrong": {
+    "en": "Something went wrong",
+    "ru": "Что-то пошло не так"
+  },
+  "pleaseTryAgainLater": {
+    "en": "Please try again later",
+    "ru": "Пожалуйста, попробуйте позже"
+  },
+  "noInternetConnection": {
+    "en": "No internet connection",
+    "ru": "Нет подключения к интернету"
+  },
+  "support": {
+    "en": "Support",
+    "ru": "Поддержка"
+  },
+  "guard": {
+    "connection": {
+      "title": {
+        "en": "Something is wrong with your connection",
+        "ru": "Проблема с подключением"
+      },
+      "subtitle": {
+        "en": "Press the button below to try again",
+        "ru": "Нажмите кнопку ниже, чтобы повторить"
+      }
+    },
+    "server": {
+      "title": {
+        "en": "Something went wrong",
+        "ru": "Что-то пошло не так"
+      },
+      "subtitle": {
+        "en": "This is normal, just try again by clicking the button below",
+        "ru": "Такое бывает, просто нажмите кнопку ниже"
+      }
+    }
+  },
+  "theServerIsNotResponding": {
+    "en": "The server is not responding",
+    "ru": "Сервер не отвечает"
+  },
+  "assetNotFound": {
+    "en": "Asset not found",
+    "ru": "Актив не найден"
+  },
+  "transferSent": {
+    "en": "Transfer sent",
+    "ru": "Перевод отправлен"
+  },
+  "notEnoughFundsOnTheBalance": {
+    "en": "Not enough funds on the balance",
+    "ru": "Недостаточно средств на балансе"
+  },
+  "theMinimumAmountIs": {
+    "en": "The minimum amount is {{minAmount}}",
+    "ru": "Минимальная сумма: {{minAmount}}"
+  },
+  "thisTransferHasAlreadyBeenSent": {
+    "en": "This transfer has already been sent",
+    "ru": "Этот перевод уже отправлен"
+  },
+  "transferCancelled": {
+    "en": "Transfer cancelled",
+    "ru": "Перевод отменён"
+  },
+  "transferNotFound": {
+    "en": "Transfer not found",
+    "ru": "Перевод не найден"
+  },
+  "invalidLoginOrPassword": {
+    "en": "Invalid login or password",
+    "ru": "Неверный логин или пароль"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "spike-api",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.28.5",
+  "engines": { "node": ">=24.18" },
+  "scripts": {
+    "api:gen": "node packages/devtools-core/src/cli.ts api:gen",
+    "api:mappings:gen": "node packages/devtools-core/src/cli.ts api:mappings:gen",
+    "errors:add": "node packages/devtools-core/src/cli.ts errors:add",
+    "errors:set": "node packages/devtools-core/src/cli.ts errors:set",
+    "errors:list": "node packages/devtools-core/src/cli.ts errors:list",
+    "errors:sync": "node packages/devtools-core/src/cli.ts errors:sync",
+    "errors:check": "node packages/devtools-core/src/cli.ts errors:check",
+    "i18n:set": "node packages/devtools-core/src/cli.ts i18n:set",
+    "i18n:missing": "node packages/devtools-core/src/cli.ts i18n:missing",
+    "i18n:check": "node packages/devtools-core/src/cli.ts i18n:check",
+    "i18n:sync": "node packages/devtools-core/src/cli.ts i18n:sync",
+    "i18n:split": "node packages/devtools-core/src/cli.ts i18n:split",
+    "i18n:validate": "node packages/devtools-core/src/cli.ts i18n:validate",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.1",
+    "typescript": "6.0.3",
+    "vitest": "5.0.3"
+  }
+}

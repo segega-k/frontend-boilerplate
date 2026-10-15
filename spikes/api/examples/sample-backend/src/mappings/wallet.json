@@ -1,0 +1,299 @@
+{
+  "$schema": "../../../../packages/api/src/errors/mapping.schema.json",
+  "service": "wallet",
+  "spec": "../../specs/wallet.json",
+  "operations": {
+    "getHealth": {
+      "path": "/api/v1/health",
+      "method": "get",
+      "responses": [
+        {
+          "variants": [
+            "200"
+          ],
+          "type": "silent",
+          "severity": "success",
+          "draft": true
+        },
+        {
+          "variants": [
+            "ERR"
+          ],
+          "type": "silent",
+          "severity": "error"
+        },
+        {
+          "variants": [
+            "NET"
+          ],
+          "type": "silent",
+          "severity": "error"
+        }
+      ]
+    },
+    "getProfile": {
+      "path": "/api/v1/profile",
+      "method": "get",
+      "responses": [
+        {
+          "variants": [
+            "200"
+          ],
+          "type": "silent",
+          "severity": "success"
+        },
+        {
+          "variants": [
+            "ERR"
+          ],
+          "type": "modal",
+          "severity": "error",
+          "support": true,
+          "i18n": {
+            "title": "somethingWentWrong",
+            "subtitle": "pleaseTryAgainLater"
+          }
+        },
+        {
+          "variants": [
+            "NET"
+          ],
+          "type": "modal",
+          "severity": "error",
+          "i18n": {
+            "title": "noInternetConnection"
+          }
+        },
+        {
+          "variants": [
+            "401_/api/problems/unauthorized",
+            "403_/api/problems/user_blocked"
+          ],
+          "type": "silent",
+          "severity": "error"
+        }
+      ]
+    },
+    "getBalances": {
+      "path": "/api/v1/wallet/balances",
+      "method": "get",
+      "responses": [
+        {
+          "variants": [
+            "200"
+          ],
+          "type": "silent",
+          "severity": "success"
+        },
+        {
+          "variants": [
+            "ERR"
+          ],
+          "type": "modal",
+          "severity": "error",
+          "support": true,
+          "i18n": {
+            "title": "somethingWentWrong",
+            "subtitle": "pleaseTryAgainLater"
+          }
+        },
+        {
+          "variants": [
+            "NET"
+          ],
+          "type": "modal",
+          "severity": "error",
+          "i18n": {
+            "title": "noInternetConnection"
+          }
+        },
+        {
+          "variants": [
+            "403_/api/problems/user_blocked",
+            "503_/api/problems/maintenance"
+          ],
+          "type": "silent",
+          "severity": "error"
+        },
+        {
+          "variants": [
+            "500_/api/problems/internal_error"
+          ],
+          "type": "modal",
+          "severity": "error",
+          "support": true,
+          "i18n": {
+            "title": "theServerIsNotResponding",
+            "subtitle": "pleaseTryAgainLater"
+          }
+        }
+      ]
+    },
+    "getAsset": {
+      "path": "/api/v1/wallet/assets/{code}",
+      "method": "get",
+      "responses": [
+        {
+          "variants": [
+            "200"
+          ],
+          "type": "silent",
+          "severity": "success"
+        },
+        {
+          "variants": [
+            "ERR"
+          ],
+          "type": "toast",
+          "severity": "error",
+          "support": true,
+          "i18n": {
+            "title": "somethingWentWrong",
+            "subtitle": "pleaseTryAgainLater"
+          }
+        },
+        {
+          "variants": [
+            "NET"
+          ],
+          "type": "toast",
+          "severity": "error",
+          "i18n": {
+            "title": "noInternetConnection"
+          }
+        },
+        {
+          "variants": [
+            "404_/api/problems/asset_not_found"
+          ],
+          "type": "toast",
+          "severity": "error",
+          "i18n": {
+            "title": "assetNotFound"
+          }
+        }
+      ]
+    },
+    "createTransfer": {
+      "path": "/api/v1/wallet/transfers",
+      "method": "post",
+      "responses": [
+        {
+          "variants": [
+            "200"
+          ],
+          "type": "toast",
+          "severity": "success",
+          "i18n": {
+            "title": "transferSent"
+          }
+        },
+        {
+          "variants": [
+            "ERR"
+          ],
+          "type": "toast",
+          "severity": "error",
+          "support": true,
+          "i18n": {
+            "title": "somethingWentWrong",
+            "subtitle": "pleaseTryAgainLater"
+          }
+        },
+        {
+          "variants": [
+            "NET"
+          ],
+          "type": "toast",
+          "severity": "error",
+          "i18n": {
+            "title": "noInternetConnection"
+          }
+        },
+        {
+          "variants": [
+            "400_/api/problems/insufficient_balance"
+          ],
+          "type": "toast",
+          "severity": "error",
+          "i18n": {
+            "title": "notEnoughFundsOnTheBalance"
+          }
+        },
+        {
+          "variants": [
+            "400_/api/problems/amount_too_small"
+          ],
+          "type": "custom",
+          "severity": "error",
+          "i18n": {
+            "title": "theMinimumAmountIs"
+          },
+          "params": [
+            "minAmount"
+          ]
+        },
+        {
+          "variants": [
+            "409_/api/problems/duplicate_transfer"
+          ],
+          "type": "toast",
+          "severity": "warning",
+          "i18n": {
+            "title": "thisTransferHasAlreadyBeenSent"
+          }
+        }
+      ]
+    },
+    "cancelTransfer": {
+      "path": "/api/v1/wallet/transfers/{id}",
+      "method": "delete",
+      "responses": [
+        {
+          "variants": [
+            "204"
+          ],
+          "type": "toast",
+          "severity": "success",
+          "i18n": {
+            "title": "transferCancelled"
+          }
+        },
+        {
+          "variants": [
+            "ERR"
+          ],
+          "type": "toast",
+          "severity": "error",
+          "support": true,
+          "i18n": {
+            "title": "somethingWentWrong",
+            "subtitle": "pleaseTryAgainLater"
+          },
+          "draft": true
+        },
+        {
+          "variants": [
+            "NET"
+          ],
+          "type": "toast",
+          "severity": "error",
+          "i18n": {
+            "title": "noInternetConnection"
+          },
+          "draft": true
+        },
+        {
+          "variants": [
+            "404_/api/problems/transfer_not_found"
+          ],
+          "type": "toast",
+          "severity": "error",
+          "i18n": {
+            "title": "transferNotFound"
+          }
+        }
+      ]
+    }
+  }
+}
