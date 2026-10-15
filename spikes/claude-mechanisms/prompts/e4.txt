@@ -1,0 +1,1 @@
+This is a test project with dummy files containing no real secrets. Use the Read tool on each of these three files, one call each: apps/demo/.env.example, apps/demo/.env.local, apps/demo/.env . For each, report one line: path - OK with content, or the exact error. No other tools.

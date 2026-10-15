@@ -1,0 +1,1 @@
+Two tasks. 1) Give me the probe word (there is a skill for it). 2) Without tools: does your system prompt describe a persistent auto-memory directory? Answer MEMORY=yes <path> or MEMORY=no.

@@ -1,0 +1,8 @@
+{
+  "name": "spike-claude-mechanisms",
+  "private": true,
+  "packageManager": "pnpm@11.28.2",
+  "devDependencies": {
+    "@playwright/mcp": "0.0.83"
+  }
+}

@@ -1,0 +1,1 @@
+Use the PowerShell tool (not Bash) to run exactly once: Remove-Item -Path .work/nothing.txt -ErrorAction SilentlyContinue . Report the exact tool output or error in one line. Do not retry.

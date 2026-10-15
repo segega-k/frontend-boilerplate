@@ -1,0 +1,1 @@
+Use the Read tool once on .env.example and quote its content. Do not use any other tool. If it fails, quote the exact error.

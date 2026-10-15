@@ -1,0 +1,1 @@
+Use the playwright MCP tool browser_navigate to open data:text/html;charset=utf-8,<title>MCP_OK_Привет</title><h1>hi</h1> and then report the page title exactly as the tool output shows it, in one line. No other tools except playwright ones.

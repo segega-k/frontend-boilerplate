@@ -1,0 +1,1 @@
+Use the Agent tool with subagent_type "mode-reader" in the foreground (wait for its result) to check the speed mode. Then reply with the agent's line verbatim and nothing else.
