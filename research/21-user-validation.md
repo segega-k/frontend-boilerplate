@@ -102,3 +102,22 @@ game interfaces only).
 - Offline at start → `no-network` (xRocket bug fixed). Guard/fatal-screen texts in i18n `common`.
 - Wave 1 backlog from the spike: CLI invoked via `node` (pnpm prints a banner), `i18n:delete`, ignore list, drift test
   for generated types, prettier on generated TS, MobxQuery v2 SSR/hydration.
+
+## Orchestrator decisions from wave 0 C (22c)
+
+- Site JS budget: total ≤ 200 KB gz per page and app code on top of the framework ≤ 65 KB gz (a bare Next 16.4 page with
+  one client component is already 133 KB gz).
+- CSP in site: prerendered and partially prerendered pages use the `'self' 'unsafe-inline'` script profile; the nonce +
+  `strict-dynamic` profile only for fully dynamic segments (`connection()` + `instant = false`). Experimental SRI is
+  not relied on.
+- Version pins: security releases are an exception to the 7-day rule. Wave 1 takes the Next.js 16.4.1 release of
+  2026-10-14 and the matching React patches, after checking the advisory.
+- Server Actions key: target is one image for all environments with `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` at runtime;
+  wave 1 verifies it with a closure action first, and keeps one image per environment if the check fails.
+- `app/template.tsx` is banned (it stops view transitions); the CSS fade fallback lives in the page transition component.
+- Session: the DAL calls `await connection()` before reading the cookie; `proxy.ts` does only an optimistic 307
+  redirect, the DAL check is authoritative.
+- The `[locale]` root layout sets `instant = false`; `dynamicParams` is not used with Cache Components.
+- MobX 7: `observableRef` instead of `observable.ref`.
+- Carried to wave 1: full e2e re-run after the last spike changes, WebKit session test over HTTPS, transitions on real
+  iOS Safari, Telegram WebView and Android WebView.
