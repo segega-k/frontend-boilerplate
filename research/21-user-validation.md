@@ -88,3 +88,17 @@ game interfaces only).
 - Shell scripts run from Git Bash set `MSYS_NO_PATHCONV=1` where slash arguments are passed.
 - Known risk: auto-memory folders derive from the project path with Cyrillic letters replaced by `-`; two Cyrillic
   paths of equal shape may share memory — documented in the README troubleshooting.
+
+## Orchestrator decisions from wave 0 D (22d)
+
+- Adopt the spike's deviations from xRocket: no retry on maintenance 503; 401 with an old token retried once with the
+  current session; retries via the client's own fetch; toast placeholders from error-body fields; maintenance
+  middleware also on the sign-in client; status taken from the response key; any JSON media type.
+- 401/refresh described through `AuthAdapter` (`noAuth` default, `BearerTokenAuth`, `CookieSessionAuth`).
+- `_resolution` stamped only on object bodies (xRocket array-spread bug fixed).
+- Rule for backend specs: explicit discriminator `mapping` (documented as a minimal expectation, not enforced in code).
+- Code constraints: MobX 7 named exports (`observableShallow`…); `erasableSyntaxOnly` for scripts run by Node's built-in
+  TS (no enums, no parameter properties) — applies to tools/CLI.
+- Offline at start → `no-network` (xRocket bug fixed). Guard/fatal-screen texts in i18n `common`.
+- Wave 1 backlog from the spike: CLI invoked via `node` (pnpm prints a banner), `i18n:delete`, ignore list, drift test
+  for generated types, prettier on generated TS, MobxQuery v2 SSR/hydration.
