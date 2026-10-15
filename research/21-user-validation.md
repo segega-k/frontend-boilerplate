@@ -60,3 +60,12 @@ an adapter with a neutral default, and concrete integrations are examples or opt
   examples, not default code.
 - Realtime and game: transport/outcome interfaces only; server contracts live in AI rules and docs.
 - Each template documents a "Backend contract surface": the minimum it expects and every adapter point.
+
+## Orchestrator decisions from wave 0 B (22b)
+
+- Landing/blog: no React islands by default; components are `.astro` files using the same `tv()` recipes; React islands
+  only where interactive Base UI is needed, budget ~120 KB gz JS for such pages; pages without islands ≤ 50 KB.
+- One shared `createTV` in `@kit/ui/tv` with a tailwind-merge config generated from `packages/tokens`; `tailwind-variants`
+  imports banned elsewhere.
+- Gate includes a lint self-test: the bad-example folder must fail lint (better-tailwindcss can silently disable itself).
+- `@storybook/addon-vitest` non-ASCII path bug: keep the `pnpm patch` + exact pin until fixed upstream.
