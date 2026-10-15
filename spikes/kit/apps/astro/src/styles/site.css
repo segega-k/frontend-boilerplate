@@ -1,0 +1,7 @@
+@import '@kit/ui/styles/kit.css';
+
+@source '../';
+
+@view-transition {
+  navigation: auto;
+}

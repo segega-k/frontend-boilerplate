@@ -1,0 +1,19 @@
+---
+import CancelDialog from '../islands/CancelDialog';
+import CheckoutForm from '../islands/CheckoutForm';
+import Base from '../layouts/Base.astro';
+import { page } from '../styles/page.styled';
+
+const styles = page();
+---
+
+<Base title="Kit spike Astro">
+  <h1 class={styles.title()}>Checkout</h1>
+  <p class={styles.lead()}>Kit consumed as source by Astro islands.</p>
+  <div class={styles.card()}>
+    <CheckoutForm client:visible />
+    <div class={styles.actions()}>
+      <CancelDialog client:idle />
+    </div>
+  </div>
+</Base>

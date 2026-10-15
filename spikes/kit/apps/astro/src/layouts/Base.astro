@@ -1,0 +1,37 @@
+---
+import { screenTransition } from '@kit/ui/ScreenTransition';
+import ThemeToggle from '../islands/ThemeToggle';
+import { page } from '../styles/page.styled';
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const styles = page();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme='light'}})()</script>
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class={styles.shell()}>
+      <header class={styles.header()}>
+        <nav class={styles.nav()}>
+          <a href="/" class={styles.link()}>Home</a>
+          <a href="/about/" class={styles.link()}>About</a>
+        </nav>
+        <ThemeToggle client:load />
+      </header>
+      <main class={screenTransition()}>
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import { page } from '../styles/page.styled';
+
+const styles = page();
+---
+
+<Base title="About · Kit spike Astro">
+  <h1 class={styles.title()}>About</h1>
+  <p class={styles.lead()}>Static page with zero islands besides the theme toggle; navigation uses native cross-document view transitions.</p>
+</Base>

@@ -1,0 +1,13 @@
+diff --git a/dist/vitest-plugin/test-utils.js b/dist/vitest-plugin/test-utils.js
+index 40c323d79fe71610148897e983ed01f134e28f88..09de81f04ae925c6c1accf0c211020d1e38ea163 100644
+--- a/dist/vitest-plugin/test-utils.js
++++ b/dist/vitest-plugin/test-utils.js
+@@ -72,7 +72,7 @@ var DEFAULT_VIEWPORT_DIMENSIONS = {
+ };
+ 
+ // src/vitest-plugin/test-utils.ts
+-var convertToFilePath = (url) => url.replace(/^file:\/\//, "").replace(/^\/+([a-zA-Z]:)/, "$1").replace(/%20/g, " "), testStory = ({
++var convertToFilePath = (url) => decodeURIComponent(url.replace(/^file:\/\//, "").replace(/^\/+([a-zA-Z]:)/, "$1")), testStory = ({
+   exportName,
+   story,
+   meta,

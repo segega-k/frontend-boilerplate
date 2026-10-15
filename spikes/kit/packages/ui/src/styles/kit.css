@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+@import '@kit/tokens/fonts.css';
+@import '@kit/tokens/tokens.css';
+@import '@kit/tokens/theme.css';
+
+@source '../';
+
+@custom-variant no-vt {
+  @supports not (view-transition-name: none) {
+    @slot;
+  }
+}
+
+@theme inline {
+  --animate-screen-in: screen-in var(--duration-screen) var(--ease-standard) both;
+  --animate-spin: spin 700ms linear infinite;
+
+  @keyframes screen-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+}
+
+@utility duration-fast {
+  --tw-duration: var(--duration-fast);
+
+  transition-duration: var(--duration-fast);
+}
+
+@utility duration-base {
+  --tw-duration: var(--duration-base);
+
+  transition-duration: var(--duration-base);
+}
+
+@utility transition-presence {
+  transition-property: opacity, scale, translate, transform;
+  transition-duration: var(--duration-base);
+  transition-timing-function: var(--ease-standard);
+}
+
+@utility opacity-disabled {
+  opacity: var(--opacity-disabled);
+}
+
+@utility bg-scrim {
+  background-color: color-mix(in oklab, var(--fg) calc(var(--opacity-scrim) * 100%), transparent);
+}
+
+@layer base {
+  html {
+    background-color: var(--bg);
+    color: var(--fg);
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--duration-screen);
+  animation-timing-function: var(--ease-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
