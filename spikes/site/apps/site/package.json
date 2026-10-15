@@ -1,0 +1,38 @@
+{
+  "name": "@spike/site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && node scripts/copy-static.mjs",
+    "start": "node .next/standalone/apps/site/server.js",
+    "e2e": "playwright test",
+    "measure": "node scripts/measure.mjs"
+  },
+  "dependencies": {
+    "@spike/ui": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "i18next": "catalog:",
+    "iron-session": "catalog:",
+    "mobx": "catalog:",
+    "mobx-react-lite": "catalog:",
+    "next": "catalog:",
+    "next-i18next": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-i18next": "catalog:",
+    "server-only": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:"
+  },
+  "devDependencies": {
+    "@playwright/test": "catalog:",
+    "@tailwindcss/postcss": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
+  }
+}

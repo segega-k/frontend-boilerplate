@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+/* kit is consumed as source: Tailwind must scan its files for class names */
+@source '../../../../packages/ui/src';
+
+@theme inline {
+  --color-brand: #3346d3;
+  --color-brand-strong: #2232a8;
+}
+
+:root {
+  --duration-exit: 120ms;
+  --duration-enter: 200ms;
+  --duration-move: 280ms;
+}
+
+/* React <ViewTransition> directional page transitions (types come from <Link transitionTypes>) */
+::view-transition-old(.nav-forward) {
+  --slide-offset: -40px;
+  animation: var(--duration-exit) ease-in both vt-fade reverse, var(--duration-move) ease-out both vt-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 40px;
+  animation: var(--duration-enter) ease-out var(--duration-exit) both vt-fade, var(--duration-move) ease-out both vt-slide;
+}
+::view-transition-old(.nav-back) {
+  --slide-offset: 40px;
+  animation: var(--duration-exit) ease-in both vt-fade reverse, var(--duration-move) ease-out both vt-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -40px;
+  animation: var(--duration-enter) ease-out var(--duration-exit) both vt-fade, var(--duration-move) ease-out both vt-slide;
+}
+::view-transition {
+  pointer-events: none;
+}
+.site-header {
+  view-transition-name: site-header;
+}
+::view-transition-group(site-header) {
+  animation: none;
+}
+
+@keyframes vt-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes vt-slide {
+  from { translate: var(--slide-offset); }
+  to { translate: 0; }
+}
+
+/* Fallback without the View Transitions API: template.tsx remounts on navigation, so its root fades in */
+@supports not (view-transition-name: x) {
+  .page-fallback {
+    animation: vt-fade var(--duration-enter) ease-out both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s !important;
+  }
+  .page-fallback {
+    animation: none;
+  }
+}
