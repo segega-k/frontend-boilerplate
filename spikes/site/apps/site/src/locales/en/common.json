@@ -1,0 +1,14 @@
+{
+  "title": "Site smoke",
+  "home": "Home",
+  "about": "About",
+  "items": "Items",
+  "account": "Account",
+  "login": "Log in",
+  "logout": "Log out",
+  "news": "News (cached)",
+  "aboutText": "A second prerendered page to test page transitions.",
+  "increment": "Clicks: {{count}}",
+  "welcome": "Welcome, {{name}}",
+  "itemsTitle": "Items (RSC prefetch + HydrationBoundary + MobX)"
+}

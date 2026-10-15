@@ -1,0 +1,10 @@
+{
+  "name": "site-spike",
+  "private": true,
+  "packageManager": "pnpm@11.22.0",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "build": "pnpm --filter @spike/site build",
+    "start": "pnpm --filter @spike/site start"
+  }
+}

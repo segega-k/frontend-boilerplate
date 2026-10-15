@@ -1,0 +1,14 @@
+{
+  "title": "Смоук сайта",
+  "home": "Главная",
+  "about": "О нас",
+  "items": "Элементы",
+  "account": "Кабинет",
+  "login": "Войти",
+  "logout": "Выйти",
+  "news": "Новости (кэш)",
+  "aboutText": "Вторая пререндеренная страница для проверки переходов.",
+  "increment": "Нажатий: {{count}}",
+  "welcome": "Привет, {{name}}",
+  "itemsTitle": "Элементы (RSC prefetch + HydrationBoundary + MobX)"
+}
