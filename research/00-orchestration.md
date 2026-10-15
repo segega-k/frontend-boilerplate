@@ -63,3 +63,16 @@ design for Claude Code only.
 - 2026-10-15: round 5 (errors [18], utils [19], showcase) sent to the Fable co-author.
 - 2026-10-15: backlog file 20-backlog.md created (speed skill, final README blocks). Check it before closing any implementation wave.
 - 2026-10-15: round 5 accepted; master-plan.pdf (10 pages) and stack-report.pdf rebuilt; committed c9500c0 on branch master-plan and pushed. Waiting for the user's final validation; no further work until then.
+
+## Wave 0 (started 2026-10-15, mode comfort)
+
+Brief: `22-wave0-brief.md`. Each agent works in its own git worktree, commits on its own branch, no push; the
+orchestrator merges into `main` after review.
+
+| Agent | Report | Spike |
+| --- | --- | --- |
+| A | 22a-claude-mechanisms.md | spikes/claude-mechanisms |
+| B | 22b-kit-styling-smoke.md | spikes/kit |
+| C | 22c-site-smoke.md | spikes/site |
+| D | 22d-api-errors-smoke.md | spikes/api |
+| E | 22e-adrs.md + 22e-plan-fold-in.md | docs/adr |
