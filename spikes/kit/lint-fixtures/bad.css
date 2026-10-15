@@ -1,0 +1,12 @@
+.card {
+  color: #ff00aa;
+  background: rgb(10 10 10);
+  transition: all 200ms;
+  font-family: 'Space Grotesk', sans-serif;
+  padding: var(--space-unknown);
+}
+
+.chip {
+  transition-property: all;
+  color: var(--fg);
+}

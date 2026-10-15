@@ -1,0 +1,29 @@
+{
+  "name": "kit-spike",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.28.5",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "tokens": "pnpm --filter @kit/tokens build",
+    "lint": "eslint packages apps",
+    "lint:fixtures": "eslint --no-warn-ignored lint-fixtures",
+    "lint:css": "stylelint \"packages/**/*.css\" \"apps/**/src/**/*.css\"",
+    "lint:css:fixtures": "stylelint \"lint-fixtures/**/*.css\"",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "@eslint/js": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-better-tailwindcss": "catalog:",
+    "globals": "catalog:",
+    "stylelint": "catalog:",
+    "stylelint-config-standard": "catalog:",
+    "stylelint-value-no-unknown-custom-properties": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "catalog:"
+  }
+}

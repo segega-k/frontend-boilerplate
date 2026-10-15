@@ -1,0 +1,5 @@
+@import '@kit/ui/styles/kit.css';
+
+@source '../';
+
+@custom-variant link-active (&[data-status='active']);

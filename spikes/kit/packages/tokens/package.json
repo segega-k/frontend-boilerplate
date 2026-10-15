@@ -1,0 +1,23 @@
+{
+  "name": "@kit/tokens",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tokens.css": "./src/generated/tokens.css",
+    "./theme.css": "./src/generated/theme.css",
+    "./fonts.css": "./src/fonts.css",
+    "./canvas": "./src/generated/canvas.ts",
+    "./twMergeConfig": "./src/generated/twMergeConfig.ts"
+  },
+  "scripts": {
+    "build": "node scripts/build.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@fontsource-variable/onest": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
+  }
+}
