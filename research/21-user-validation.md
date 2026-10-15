@@ -69,3 +69,8 @@ an adapter with a neutral default, and concrete integrations are examples or opt
   imports banned elsewhere.
 - Gate includes a lint self-test: the bad-example folder must fail lint (better-tailwindcss can silently disable itself).
 - `@storybook/addon-vitest` non-ASCII path bug: keep the `pnpm patch` + exact pin until fixed upstream.
+
+Correction (user, 2026-10-15): the error contract stays fixed, not configurable — errors parsed by problem+json `type`,
+banned = 403 with the marker, maintenance = 503, exactly as in xRocket. It is part of the minimal backend expectations.
+The rest of the backend-agnostic rule stays (auth adapters, commerce interface + mock, initData adapter, realtime and
+game interfaces only).
