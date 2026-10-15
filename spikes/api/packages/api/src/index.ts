@@ -1,0 +1,20 @@
+// Barrel: the only import point of the library. An app's generated `index.generated.ts` registers its mappings.
+export { createRuntime, type RuntimeOptions } from './createRuntime.ts';
+export type { ApiRuntime, Translate } from './runtime.ts';
+export { MIDDLEWARE_ORDER, buildMiddlewares, buildAuthClientMiddlewares, createServiceClient } from './middleware/setup.ts';
+export { resolveApiResponse, resolveNetworkError } from './errors/resolve.ts';
+export { getApiResponseResolution, translateResolution, RESOLUTION_KEY } from './errors/translate.ts';
+export type { RawResolution, ResolvedResponse, VariantsOf } from './errors/types.ts';
+export { createQuery, createMutation } from './query/factories.ts';
+export { MobxQuery, MobxMutation, type LoadingStatus, type QueryResult } from './query/MobxQuery.ts';
+export { AppStore, type AppStatus } from './state/AppStore.ts';
+export { BearerTokenAuth, CookieSessionAuth, type BearerTokenAuthOptions, type SessionTokens } from './state/AuthStore.ts';
+export { noAuth, type AuthAdapter } from './contract.ts';
+export { createApiErrorsT, API_ERRORS_NS } from './i18n.ts';
+export { registerMappings } from './errors/resolve.ts';
+export { callApi, type SuccessData } from './query/factories.ts';
+export type { EndpointResponseMapping, ServiceMappings } from './errors/types.ts';
+export { UserStore } from './state/UserStore.ts';
+export { ToastsStore, type Toast } from './state/ToastsStore.ts';
+export { pageQueryGuardState, type GuardModal, type PageQueryRef } from './state/pageQueryGuard.ts';
+export { startNetworkRecovery, healthPing, onlineEventOnly } from './state/networkRecovery.ts';

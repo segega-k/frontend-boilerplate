@@ -1,0 +1,25 @@
+{
+  "somethingWentWrong": "Something went wrong",
+  "pleaseTryAgainLater": "Please try again later",
+  "noInternetConnection": "No internet connection",
+  "support": "Support",
+  "guard": {
+    "connection": {
+      "title": "Something is wrong with your connection",
+      "subtitle": "Press the button below to try again"
+    },
+    "server": {
+      "title": "Something went wrong",
+      "subtitle": "This is normal, just try again by clicking the button below"
+    }
+  },
+  "theServerIsNotResponding": "The server is not responding",
+  "assetNotFound": "Asset not found",
+  "transferSent": "Transfer sent",
+  "notEnoughFundsOnTheBalance": "Not enough funds on the balance",
+  "theMinimumAmountIs": "The minimum amount is {{minAmount}}",
+  "thisTransferHasAlreadyBeenSent": "This transfer has already been sent",
+  "transferCancelled": "Transfer cancelled",
+  "transferNotFound": "Transfer not found",
+  "invalidLoginOrPassword": "Invalid login or password"
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://boilerplate.local/schemas/api-error-mapping.json",
+  "title": "API error mapping of one service",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["service", "spec", "operations"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "service": { "type": "string", "pattern": "^[a-z][a-zA-Z0-9]*$" },
+    "spec": { "type": "string", "description": "Path to the committed OpenAPI spec, relative to this file" },
+    "operations": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$" },
+      "additionalProperties": { "$ref": "#/$defs/operation" }
+    }
+  },
+  "$defs": {
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "method", "responses"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^/" },
+        "method": { "enum": ["get", "put", "post", "delete", "patch"] },
+        "responses": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/response" } }
+      }
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["variants", "type", "severity"],
+      "properties": {
+        "variants": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "description": "2xx status (\"200\"), error \"STATUS_problemType\", or synthetic \"ERR\" / \"NET\"; the method is the operation's",
+            "pattern": "^(ERR|NET|2\\d\\d|[1-5]\\d\\d_.+)$"
+          }
+        },
+        "type": { "enum": ["toast", "modal", "custom", "silent"] },
+        "severity": { "enum": ["error", "warning", "info", "success"] },
+        "support": { "type": "boolean" },
+        "i18n": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["title"],
+          "properties": {
+            "title": { "type": "string", "minLength": 1 },
+            "subtitle": { "type": "string", "minLength": 1 }
+          }
+        },
+        "params": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "draft": { "type": "boolean", "description": "Written by an agent, waiting for human approval" },
+        "comment": { "type": "string" }
+      },
+      "if": { "properties": { "type": { "enum": ["toast", "modal", "custom"] } } },
+      "then": { "required": ["i18n"] }
+    }
+  }
+}

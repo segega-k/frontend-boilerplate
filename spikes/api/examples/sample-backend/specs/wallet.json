@@ -1,0 +1,258 @@
+{
+  "openapi": "3.1.0",
+  "info": { "title": "Wallet service (spike sample)", "version": "1.0.0" },
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "operationId": "getHealth",
+        "tags": ["system"],
+        "responses": {
+          "200": {
+            "description": "Service is up",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Health" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/profile": {
+      "get": {
+        "operationId": "getProfile",
+        "tags": ["profile"],
+        "responses": {
+          "200": {
+            "description": "Current user profile",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Profile" } } }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/UnauthorizedProblem" } } }
+          },
+          "403": {
+            "description": "User is blocked",
+            "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/UserBlockedProblem" } } }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/InternalErrorProblem" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/wallet/balances": {
+      "get": {
+        "operationId": "getBalances",
+        "tags": ["wallet"],
+        "responses": {
+          "200": {
+            "description": "Balances",
+            "content": {
+              "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Balance" } } }
+            }
+          },
+          "403": {
+            "description": "User is blocked",
+            "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/UserBlockedProblem" } } }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/InternalErrorProblem" } } }
+          },
+          "503": {
+            "description": "Platform maintenance",
+            "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/MaintenanceProblem" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/wallet/assets/{code}": {
+      "get": {
+        "operationId": "getAsset",
+        "tags": ["wallet"],
+        "parameters": [{ "name": "code", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "Asset",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Asset" } } }
+          },
+          "404": {
+            "description": "Unknown asset",
+            "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/AssetNotFoundProblem" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/wallet/transfers": {
+      "post": {
+        "operationId": "createTransfer",
+        "tags": ["wallet"],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/TransferRequest" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "Transfer created (backend may answer 201)",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Transfer" } } }
+          },
+          "400": {
+            "description": "Validation problem",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "oneOf": [
+                    { "$ref": "#/components/schemas/InsufficientBalanceProblem" },
+                    { "$ref": "#/components/schemas/AmountTooSmallProblem" }
+                  ],
+                  "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                      "/api/problems/insufficient_balance": "#/components/schemas/InsufficientBalanceProblem",
+                      "/api/problems/amount_too_small": "#/components/schemas/AmountTooSmallProblem"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Duplicate transfer",
+            "content": {
+              "application/problem+json": { "schema": { "$ref": "#/components/schemas/DuplicateTransferProblem" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/wallet/transfers/{id}": {
+      "delete": {
+        "operationId": "cancelTransfer",
+        "tags": ["wallet"],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "204": { "description": "Cancelled" },
+          "404": {
+            "description": "Unknown transfer",
+            "content": {
+              "application/problem+json": { "schema": { "$ref": "#/components/schemas/TransferNotFoundProblem" } }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Health": { "type": "object", "required": ["ok"], "properties": { "ok": { "type": "boolean" } } },
+      "Profile": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": { "id": { "type": "string" }, "name": { "type": "string" } }
+      },
+      "Balance": {
+        "type": "object",
+        "required": ["asset", "amount"],
+        "properties": { "asset": { "type": "string" }, "amount": { "type": "string" } }
+      },
+      "Asset": {
+        "type": "object",
+        "required": ["code", "name"],
+        "properties": { "code": { "type": "string" }, "name": { "type": "string" } }
+      },
+      "TransferRequest": {
+        "type": "object",
+        "required": ["asset", "amount", "to"],
+        "properties": { "asset": { "type": "string" }, "amount": { "type": "string" }, "to": { "type": "string" } }
+      },
+      "Transfer": {
+        "type": "object",
+        "required": ["id", "status"],
+        "properties": { "id": { "type": "string" }, "status": { "type": "string" } }
+      },
+      "UnauthorizedProblem": {
+        "type": "object",
+        "required": ["type", "title", "status"],
+        "properties": {
+          "type": { "const": "/api/problems/unauthorized" },
+          "title": { "type": "string" },
+          "status": { "const": 401 }
+        }
+      },
+      "UserBlockedProblem": {
+        "type": "object",
+        "required": ["type", "title", "status"],
+        "properties": {
+          "type": { "const": "/api/problems/user_blocked" },
+          "title": { "type": "string" },
+          "status": { "const": 403 },
+          "instance": { "type": "string" }
+        }
+      },
+      "InternalErrorProblem": {
+        "type": "object",
+        "required": ["type", "title", "status"],
+        "properties": {
+          "type": { "const": "/api/problems/internal_error" },
+          "title": { "type": "string" },
+          "status": { "const": 500 },
+          "instance": { "type": "string" }
+        }
+      },
+      "MaintenanceProblem": {
+        "type": "object",
+        "required": ["type", "title", "status"],
+        "properties": {
+          "type": { "const": "/api/problems/maintenance" },
+          "title": { "type": "string" },
+          "status": { "const": 503 },
+          "retryAfterSec": { "type": "integer" }
+        }
+      },
+      "AssetNotFoundProblem": {
+        "type": "object",
+        "required": ["type", "title", "status"],
+        "properties": {
+          "type": { "const": "/api/problems/asset_not_found" },
+          "title": { "type": "string" },
+          "status": { "const": 404 }
+        }
+      },
+      "InsufficientBalanceProblem": {
+        "type": "object",
+        "required": ["type", "title", "status"],
+        "properties": {
+          "type": { "const": "/api/problems/insufficient_balance" },
+          "title": { "type": "string" },
+          "status": { "const": 400 }
+        }
+      },
+      "AmountTooSmallProblem": {
+        "type": "object",
+        "required": ["type", "title", "status", "minAmount"],
+        "properties": {
+          "type": { "const": "/api/problems/amount_too_small" },
+          "title": { "type": "string" },
+          "status": { "const": 400 },
+          "minAmount": { "type": "string" }
+        }
+      },
+      "DuplicateTransferProblem": {
+        "type": "object",
+        "required": ["type", "title", "status"],
+        "properties": {
+          "type": { "const": "/api/problems/duplicate_transfer" },
+          "title": { "type": "string" },
+          "status": { "const": 409 }
+        }
+      },
+      "TransferNotFoundProblem": {
+        "type": "object",
+        "required": ["type", "title", "status"],
+        "properties": {
+          "type": { "const": "/api/problems/transfer_not_found" },
+          "title": { "type": "string" },
+          "status": { "const": 404 }
+        }
+      }
+    }
+  }
+}

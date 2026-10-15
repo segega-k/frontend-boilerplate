@@ -1,0 +1,13 @@
+{
+  "name": "@example/sample-backend",
+  "private": true,
+  "type": "module",
+  "description": "FIXTURE: one possible backend (problem+json, bearer token with refresh). Not part of the library.",
+  "exports": { ".": "./src/app.ts" },
+  "dependencies": {
+    "@repo/api": "workspace:*",
+    "@tanstack/query-core": "5.104.1",
+    "mobx": "7.0.6",
+    "openapi-fetch": "0.17.0"
+  }
+}
