@@ -37,3 +37,11 @@ plan revision. Numbers refer to the orchestrator's question list.
 | 30 | CI host | GitHub only for now; GitLab removed from the waves |
 | 31 | Start | Wave 0 starts now in `comfort` mode |
 | 32 | Merge | `master-plan` merged into `main` |
+
+## Orchestrator resolutions of contradictions found in wave 0 (22e)
+
+- `DESIGN.md`: one per app (`apps/<id>/DESIGN.md`) inside the project repository; #26 means design exceptions are
+  recorded in that project's own DESIGN.md files, not in the boilerplate.
+- Agent plans: `.work/plans/` tracked by git, agents never commit them (plan wording wins over the old frame line).
+- Fonts: rule T7 (system font stack in TMA) from 07/07a is cancelled by #27.
+- `--update latest` informational run: weekly, like the init matrix (Actions minutes).
