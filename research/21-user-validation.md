@@ -45,3 +45,18 @@ plan revision. Numbers refer to the orchestrator's question list.
 - Agent plans: `.work/plans/` tracked by git, agents never commit them (plan wording wins over the old frame line).
 - Fonts: rule T7 (system font stack in TMA) from 07/07a is cancelled by #27.
 - `--update latest` informational run: weekly, like the init matrix (Actions minutes).
+
+## User rule: backend-agnostic templates (2026-10-15)
+
+Templates must not be bound to any specific backend contract (backends differ per developer). Template code contains
+only the basics for connecting to a backend plus minimal expectations; everything backend-specific is configuration or
+an adapter with a neutral default, and concrete integrations are examples or optional adapters. Consequences:
+- Error mapping: engine, middleware order, toasts/modals/fatal screens stay as specified; the error-key extractor
+  (problem+json `type` by default), banned and maintenance markers, health check, auth header and refresh strategy are
+  configuration/adapters.
+- Auth: `AuthAdapter` interface with neutral stubs; no assumed endpoints or payloads; refresh only if the adapter has it.
+- TMA: how `initData` is sent and exchanged is an adapter + documented expectation, not hardcoded.
+- Shop: `CommerceProvider` interface + `mock` adapter in the template; own-API, Medusa, Shopify adapters are optional
+  examples, not default code.
+- Realtime and game: transport/outcome interfaces only; server contracts live in AI rules and docs.
+- Each template documents a "Backend contract surface": the minimum it expects and every adapter point.
